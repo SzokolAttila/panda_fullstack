@@ -13,20 +13,20 @@ class PandaController extends Controller
     {
         $orderBy = $request->query("orderBy");
         $order = $request->query("order");
-        $pandas = Panda::all();
+        $pandas = Panda::query();
         if ($orderBy != null){
             if($orderBy == "age"){
                 if ($order == "asc")
-                    $pandas->orderByDescending("birth");
+                    $pandas->orderByDesc("birth");
                 else if ($order == "desc") $pandas->orderBy("birth");
             }
             else if ($orderBy == "name"){
                 if ($order == "asc")
                     $pandas->orderBy("name");
-                else if ($order == "desc") $pandas->orderByDescending("name");
+                else if ($order == "desc") $pandas->orderByDesc("name");
             }
         }
-        return new PandaResource($pandas);
+        return PandaResource::collection($pandas->get());
     }
 
     public function show(int $id) : JsonResource
