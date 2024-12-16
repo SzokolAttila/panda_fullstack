@@ -1,5 +1,7 @@
 <template>
-  <BaseHeader />
+  <header>
+    <BaseHeader />
+  </header>
   <main class="container mx-auto">
     <slot />
   </main>
