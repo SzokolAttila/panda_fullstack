@@ -9,4 +9,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/pandas', [PandaController::class, "index"])->name("pandas.index");
-Route::get('/pandas/{id}', [PandaController::class, "show"])->name("pandas.show");
+Route::get('/pandas/{id}', [PandaController::class, "show"])->name("pandas.show")->whereNumber("id");
+Route::post("/pandas", [PandaController::class, "store"])->name("pandas.store");
+Route::delete("/pandas/{id}", [PandaController::class, "destroy"])->name("pandas.destroy")->whereNumber("id");
